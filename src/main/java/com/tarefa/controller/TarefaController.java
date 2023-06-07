@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +41,18 @@ public class TarefaController {
 		
 		return ResponseEntity.ok(_tarefs.map(DetalharTarefaDTO::new));
 	}
-	
+	@GetMapping("/detalhar/{id}")
+	public ResponseEntity<DetalharTarefaDTO> detalharTarefaPorId(@PathVariable Long id){
+		var _taref = serv.detalharPorId(id);
+		
+		return ResponseEntity.ok(new DetalharTarefaDTO(_taref));
+	}
+	@PutMapping("/alterar/{id}")
+	@Transactional
+	public ResponseEntity<DetalharTarefaDTO> alterarTarefaPorId(@PathVariable Long id, @RequestBody @Valid TarefaDTO dto){
+		var _taref = serv.alterarPorId(id, dto);
+		
+		return ResponseEntity.ok(new DetalharTarefaDTO(_taref));
+	}
 
 }

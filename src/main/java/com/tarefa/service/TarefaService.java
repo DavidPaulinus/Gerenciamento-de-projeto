@@ -26,5 +26,16 @@ public class TarefaService {
 	public Page<Tarefa> listarTarefas() {
 		return new PageImpl<>(repo.findAll());
 	}
+
+	public Tarefa detalharPorId(Long id) {
+		return repo.findById(id).orElseThrow(() -> new RuntimeException("Erro ao achar por ID"));
+	}
+
+	public Tarefa alterarPorId(Long id, @Valid TarefaDTO dto) {
+		var _taref = detalharPorId(id);
+		_taref.alterar(dto);
+		
+		return _taref;
+	}
 	
 }

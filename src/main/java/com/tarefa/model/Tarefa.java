@@ -36,4 +36,12 @@ public class Tarefa {
 		this.prazo = dto.prazo();
 		this.email = dto.email();
 	}
+
+	public void alterar(@Valid TarefaDTO dto) {
+		this.nome = dto.nome();
+		this.descricao = dto.descricao();
+		this.notificacao = dto.notificacao();
+		this.prazo = dto.prazo();
+		this.email = dto.email();
+	}
 }
