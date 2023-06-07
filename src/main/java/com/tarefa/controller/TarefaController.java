@@ -1,16 +1,35 @@
 package com.tarefa.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.tarefa.model.dto.DetalharTarefaDTO;
+import com.tarefa.model.dto.TarefaDTO;
+import com.tarefa.service.TarefaService;
+
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tarefa")
 public class TarefaController {
-	
-	@GetMapping
-	public String teste() {
-		return "Hello world";
+	@Autowired
+	private TarefaService serv;
+
+	@PostMapping("/criar")
+	@Transactional
+	public ResponseEntity<DetalharTarefaDTO> criarTarefa(@RequestBody @Valid TarefaDTO dto, UriComponentsBuilder uri) {
+		var _taref = serv.criar(dto);
+
+		return ResponseEntity.created(
+				uri.path("/tarefa/criar").buildAndExpand(_taref.getId()).toUri()
+				)
+				.body(new DetalharTarefaDTO(_taref));
 	}
-	
+
 }
