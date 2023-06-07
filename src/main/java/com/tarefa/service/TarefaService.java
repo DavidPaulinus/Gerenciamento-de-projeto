@@ -1,6 +1,8 @@
 package com.tarefa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import com.tarefa.model.Tarefa;
@@ -19,6 +21,10 @@ public class TarefaService {
 		repo.save(_taref);
 		
 		return _taref;
+	}
+
+	public Page<Tarefa> listarTarefas() {
+		return new PageImpl<>(repo.findAll());
 	}
 	
 }
