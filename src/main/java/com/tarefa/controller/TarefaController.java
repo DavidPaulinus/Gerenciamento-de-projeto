@@ -3,6 +3,7 @@ package com.tarefa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +54,14 @@ public class TarefaController {
 		var _taref = serv.alterarPorId(id, dto);
 		
 		return ResponseEntity.ok(new DetalharTarefaDTO(_taref));
+	}
+	
+	@DeleteMapping("/apagar/{id}")
+	@Transactional
+	public ResponseEntity<String> apagarTarefaPorId(@PathVariable Long id){
+		var _taref = serv.apagarPorId(id);
+		
+		return ResponseEntity.ok(_taref);
 	}
 
 }

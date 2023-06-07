@@ -37,5 +37,11 @@ public class TarefaService {
 		
 		return _taref;
 	}
+
+	public String apagarPorId(Long id) {
+		repo.deleteById(id);
+		
+		return "Tarefa apagada com sucesso!";
+	}
 	
 }
