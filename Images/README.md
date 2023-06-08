@@ -11,6 +11,6 @@
 
 <div>
 	<p>Post Request: </p>
-	<img src="postTarefaReq">
+	<img src="postTarefaReq.png">
 </div>
 
