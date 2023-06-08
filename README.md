@@ -1,6 +1,5 @@
 <head>
 		<meta charset="utf-8">
-		<title>Barbearia Alura</title>
 		<link rel="stylesheet" href="style.css">
 		
 </head>
@@ -12,6 +11,6 @@
 
 <div>
 	<p>Post Request: </p>
-	<img src="postTarefaReq.png">
+	<img src="postTarefaReq">
 </div>
 
