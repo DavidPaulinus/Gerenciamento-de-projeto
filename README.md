@@ -7,10 +7,10 @@
 
 <h1>Projeto:</h1>
 
-<header>Requisições e Respostas para Tarefa</header>
+<h3>Requisições e Respostas para Tarefa</h3>
 
 <div>
 	<p>Post Request: </p>
-	<img src="postTarefaReq">
+	<img src="tarefa\Images\postTarefaReq.png">
 </div>
 
