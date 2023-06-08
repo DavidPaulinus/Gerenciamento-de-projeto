@@ -11,7 +11,7 @@
 <header>Requisições e Respostas para Tarefa</header>
 
 <div>
-	<p>Post Request: </p>
+	<p>Request: </p>
 	<img src="postTarefaReq.png">
 </div>
 
