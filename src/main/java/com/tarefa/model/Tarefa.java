@@ -5,9 +5,11 @@ import java.time.LocalDateTime;
 import com.tarefa.model.dto.TarefaDTO;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -28,6 +30,8 @@ public class Tarefa {
 	private String notificacao;
 	private LocalDateTime prazo;
 	private String email;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Projeto projeto;
 
 	public Tarefa(@Valid TarefaDTO dto) {
 		this.nome = dto.nome();
