@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,14 @@ public class ProjetoController {
 	@GetMapping("/detalhar/{id}")
 	public ResponseEntity<DetalharProjetoDTO> detalharProjetoPorId(@PathVariable Long id){
 		var _proj = serv.detalharPorId(id);
+		
+		return ResponseEntity.ok(new DetalharProjetoDTO(_proj));
+	}
+	
+	@PutMapping("/alterar/{id}")
+	@Transactional
+	public ResponseEntity<DetalharProjetoDTO> alterarProjeto(@RequestBody @Valid ProjetoDTO dto, @PathVariable Long id){
+		var _proj = serv.alterarPorId(dto,id);
 		
 		return ResponseEntity.ok(new DetalharProjetoDTO(_proj));
 	}

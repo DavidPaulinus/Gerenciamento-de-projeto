@@ -9,6 +9,8 @@ import com.tarefa.model.Projeto;
 import com.tarefa.model.dto.ProjetoDTO;
 import com.tarefa.service.util.repository.ProjetoRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class ProjetoService {
 	@Autowired
@@ -27,5 +29,12 @@ public class ProjetoService {
 
 	public Projeto detalharPorId(Long id) {
 		return repo.findById(id).orElseThrow(() -> new RuntimeException("ID inválido"));
+	}
+
+	public Projeto alterarPorId(@Valid ProjetoDTO dto, Long id) {
+		var _proj = detalharPorId(id);
+		_proj.alterar(dto);
+		
+		return _proj;
 	}
 }

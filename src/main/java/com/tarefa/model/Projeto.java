@@ -47,4 +47,12 @@ public class Projeto {
 		
 		return null;
 	}
+
+	public void alterar(@Valid ProjetoDTO dto) {
+		this.nome = dto.nome();
+		this.descricao = dto.descricao();
+		this.dataCriacao = LocalDate.now();
+		this.prazo = dto.prazo();
+		this.tarefa = dto.tarefa();
+	}
 }
