@@ -3,6 +3,7 @@ package com.tarefa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,5 +56,13 @@ public class ProjetoController {
 		var _proj = serv.alterarPorId(dto,id);
 		
 		return ResponseEntity.ok(new DetalharProjetoDTO(_proj));
+	}
+	
+	@DeleteMapping("/apagar/{id}")
+	@Transactional
+	public ResponseEntity<String> apagarProjetoPorId(@PathVariable Long id){
+		var _proj = serv.apagarPorId(id);
+		
+		return ResponseEntity.ok(_proj);
 	}
 }

@@ -37,4 +37,10 @@ public class ProjetoService {
 		
 		return _proj;
 	}
+
+	public String apagarPorId(Long id) {
+		repo.deleteById(id);
+		
+		return "Projeto apagado com sucesso";
+	}
 }
