@@ -15,11 +15,11 @@ import jakarta.validation.Valid;
 public class ProjetoService {
 	@Autowired
 	private ProjetoRepository repo;
-	
+
 	public Projeto criarProjeto(ProjetoDTO dto) {
-		var _proj = new Projeto(dto);
+		var _proj = new Projeto(avaliaProjeto(dto));
 		repo.save(_proj);
-		
+
 		return _proj;
 	}
 
@@ -34,13 +34,23 @@ public class ProjetoService {
 	public Projeto alterarPorId(@Valid ProjetoDTO dto, Long id) {
 		var _proj = detalharPorId(id);
 		_proj.alterar(dto);
-		
+
 		return _proj;
 	}
 
 	public String apagarPorId(Long id) {
 		repo.deleteById(id);
-		
+
 		return "Projeto apagado com sucesso";
+	}
+
+	private ProjetoDTO avaliaProjeto(ProjetoDTO dto) {
+		for (Projeto lista : listarProjetos()) {
+			if (lista.getNome().equals(dto.nome()) && lista.getPrazo().equals(dto.prazo())){
+				throw new RuntimeException("Não é possível ter mais de um projeto com mesmo nome e prazo");
+			}
+		}
+
+		return dto;
 	}
 }
