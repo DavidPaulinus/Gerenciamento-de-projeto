@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record TarefaDTO(
 		@NotBlank
@@ -15,6 +16,7 @@ public record TarefaDTO(
 		@NotBlank
 		String notificacao, 
 		@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+		@NotNull
 		LocalDateTime prazo,
 		@Email
 		String email

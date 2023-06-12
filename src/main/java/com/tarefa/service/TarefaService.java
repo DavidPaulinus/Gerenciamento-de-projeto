@@ -17,9 +17,9 @@ public class TarefaService {
 	private TarefaRepository repo;
 
 	public Tarefa criar(@Valid TarefaDTO dto) {
-		var _taref = new Tarefa(dto);
+		var _taref = new Tarefa(avaliaTarefa(dto));
 		repo.save(_taref);
-		
+
 		return _taref;
 	}
 
@@ -34,14 +34,24 @@ public class TarefaService {
 	public Tarefa alterarPorId(Long id, @Valid TarefaDTO dto) {
 		var _taref = detalharPorId(id);
 		_taref.alterar(dto);
-		
+
 		return _taref;
 	}
 
 	public String apagarPorId(Long id) {
 		repo.deleteById(id);
-		
+
 		return "Tarefa apagada com sucesso!";
 	}
-	
+
+	private TarefaDTO avaliaTarefa(TarefaDTO dto) {
+		for (Tarefa lista : listarTarefas()) {
+			if (lista.getNome().equals(dto.nome()) && lista.getPrazo().equals(dto.prazo())) {
+				throw new RuntimeException("Não é possível ter mais de um projeto com mesmo nome e prazo");
+			}
+		}
+
+		return dto;
+	}
+
 }
