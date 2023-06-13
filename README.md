@@ -11,6 +11,6 @@
 
 <div>
 	<p>Teste: </p>
-	![My Image](Images/tattoo madoka.jpg)
+	<img src= "Images/tattoo madoka.jpg">
 </div>
 
