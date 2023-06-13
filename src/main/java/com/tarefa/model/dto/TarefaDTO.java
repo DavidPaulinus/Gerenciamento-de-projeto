@@ -14,7 +14,7 @@ public record TarefaDTO(
 		@NotBlank
 		String descricao,
 		@NotBlank
-		String notificacao, 
+		String notificacao,
 		@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 		@NotNull
 		LocalDateTime prazo,

@@ -32,20 +32,28 @@ public class Tarefa {
 	private String email;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Projeto projeto;
+	private Boolean aFazer;
 
-	public Tarefa(@Valid TarefaDTO dto) {
+	public Tarefa(@Valid TarefaDTO dto, Projeto projeto) {
 		this.nome = dto.nome();
 		this.descricao = dto.descricao();
 		this.notificacao = dto.notificacao();
 		this.prazo = dto.prazo();
 		this.email = dto.email();
+		this.projeto = projeto;
+		this.aFazer = true;
 	}
 
-	public void alterar(@Valid TarefaDTO dto) {
+	public void alterar(@Valid TarefaDTO dto, Projeto projeto) {
 		this.nome = dto.nome();
 		this.descricao = dto.descricao();
 		this.notificacao = dto.notificacao();
 		this.prazo = dto.prazo();
 		this.email = dto.email();
+		this.projeto = projeto;
+	}
+	
+	public void completarTarefa() {
+		this.aFazer = true;
 	}
 }

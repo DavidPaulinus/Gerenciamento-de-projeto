@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import com.tarefa.model.Projeto;
+import com.tarefa.model.Tarefa;
 import com.tarefa.model.dto.ProjetoDTO;
 import com.tarefa.service.util.repository.ProjetoRepository;
 
@@ -42,6 +43,11 @@ public class ProjetoService {
 		repo.deleteById(id);
 
 		return "Projeto apagado com sucesso";
+	}
+	
+	public void assimilarTarefa(Tarefa tarefa, Long id) {
+		var _proj = detalharPorId(id);
+		_proj.adicionarTarefa(tarefa);
 	}
 
 	private ProjetoDTO avaliaProjeto(ProjetoDTO dto) {

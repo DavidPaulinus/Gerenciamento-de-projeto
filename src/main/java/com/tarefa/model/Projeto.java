@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.tarefa.model.dto.ProjetoDTO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Projeto {
 	private String descricao;
 	private LocalDate dataCriacao;
 	private LocalDate prazo;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	List<Tarefa> tarefa;
 	
 	public Projeto(@Valid ProjetoDTO dto) {
@@ -54,5 +55,9 @@ public class Projeto {
 		this.dataCriacao = LocalDate.now();
 		this.prazo = dto.prazo();
 		this.tarefa = dto.tarefa();
+	}
+
+	public void adicionarTarefa(Tarefa tarefa) {
+		this.tarefa.add(tarefa);
 	}
 }

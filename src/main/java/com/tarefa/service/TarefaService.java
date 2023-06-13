@@ -15,11 +15,15 @@ import jakarta.validation.Valid;
 public class TarefaService {
 	@Autowired
 	private TarefaRepository repo;
+	@Autowired
+	private ProjetoService proServ;
 
-	public Tarefa criar(@Valid TarefaDTO dto) {
-		var _taref = new Tarefa(avaliaTarefa(dto));
+	public Tarefa criar(@Valid TarefaDTO dto, Long projetoId) {
+		var _taref = new Tarefa(avaliaTarefa(dto), proServ.detalharPorId(projetoId));
 		repo.save(_taref);
-
+		
+		proServ.assimilarTarefa(_taref, projetoId);
+		
 		return _taref;
 	}
 
@@ -31,9 +35,11 @@ public class TarefaService {
 		return repo.findById(id).orElseThrow(() -> new RuntimeException("Erro ao achar por ID"));
 	}
 
-	public Tarefa alterarPorId(Long id, @Valid TarefaDTO dto) {
+	public Tarefa alterarPorId(Long id, @Valid TarefaDTO dto, Long projetoId) {
 		var _taref = detalharPorId(id);
-		_taref.alterar(dto);
+		var _proj = proServ.detalharPorId(projetoId);
+		
+		_taref.alterar(dto, _proj);
 
 		return _taref;
 	}
@@ -47,11 +53,17 @@ public class TarefaService {
 	private TarefaDTO avaliaTarefa(TarefaDTO dto) {
 		for (Tarefa lista : listarTarefas()) {
 			if (lista.getNome().equals(dto.nome()) && lista.getPrazo().equals(dto.prazo())) {
-				throw new RuntimeException("Não é possível ter mais de um projeto com mesmo nome e prazo");
+				throw new RuntimeException("Não é possível ter mais de uma tarefa com mesmo nome e prazo");
 			}
 		}
 
 		return dto;
+	}
+
+	public String concluir(Long id) {
+		detalharPorId(id).completarTarefa();
+		
+		return "Tarefa concluída com sucesso.";
 	}
 
 }
