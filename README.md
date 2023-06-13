@@ -11,6 +11,6 @@
 
 <div>
 	<p>Teste: </p>
-	<img src="[Images/postTarefaReq.png](https://github.com/DavidPaulinus/Gerenciamento-de-projeto/blob/master/Images/tattoo%20madoka.jpg)">
+	<img src="[[Images/postTarefaReq.png](https://github.com/DavidPaulinus/Gerenciamento-de-projeto/blob/master/Images/tattoo%20madoka.jpg)](https://github.com/DavidPaulinus/Gerenciamento-de-projeto/blob/master/Images/tattoo%20madoka.jpg?raw=true)">
 </div>
 
