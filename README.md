@@ -11,17 +11,16 @@
 
 <div>
 	<p>Cadastro de um projeto: </p>
-	<img src= "Images/PostProjeto.png">
-
-	<p>Detalhar os dados de um projeto através de seu ID: </p>
-	<img src= "Images/GetDetalharProjeto.png">
-
-	<p>Listar todos os projetos e mostrar seus dados: </p>
-	<img src= "Images/GetListarProjeto.png">
-
-	<p>Editar os dados de um projeto pelo seu ID: </p>
-	<img src= "Images/PutProjeto.png">	
+	<img src= "Images/PostProjeto.png">	
 </div>
+<p>Detalhar os dados de um projeto através de seu ID: </p>
+img src= "Images/GetDetalharProjeto.png">
+
+p>Listar todos os projetos e mostrar seus dados: </p>
+img src= "Images/GetListarProjeto.png">
+
+p>Editar os dados de um projeto pelo seu ID: </p>
+<img src= "Images/PutProjeto.png">
 
 <h3>Requisições e Respostas para Projeto</h3>
 <div>
