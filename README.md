@@ -23,7 +23,7 @@
 <p>Editar os dados de um projeto pelo seu ID: </p>
 <img src= "Images/PutProjeto.png">
 
-<h3>Requisições e Respostas para Projeto</h3>
+<h3>Requisições e Respostas para Tarefa</h3>
 <div>
 	<p>Cadastro de uma tarefa a partir do id de um projeto: </p>
 	<img src= "Images/PostTarefa.png">
