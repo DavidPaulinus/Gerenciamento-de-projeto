@@ -40,6 +40,8 @@ public class ProjetoService {
 	}
 
 	public String apagarPorId(Long id) {
+		//concertar, talvez use Query
+		
 		repo.deleteById(id);
 
 		return "Projeto apagado com sucesso";

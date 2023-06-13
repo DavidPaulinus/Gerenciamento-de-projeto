@@ -54,6 +54,6 @@ public class Tarefa {
 	}
 	
 	public void completarTarefa() {
-		this.aFazer = true;
+		this.aFazer = false;
 	}
 }

@@ -61,7 +61,12 @@ public class TarefaService {
 	}
 
 	public String concluir(Long id) {
-		detalharPorId(id).completarTarefa();
+		var _taref = detalharPorId(id);
+		
+		if(!_taref.getAFazer()) {
+			throw new RuntimeException("Tarefa já concluída. Não pode ser reconcluída.");
+		}
+		_taref.completarTarefa();
 		
 		return "Tarefa concluída com sucesso.";
 	}
