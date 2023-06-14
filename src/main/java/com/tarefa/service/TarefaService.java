@@ -16,13 +16,13 @@ public class TarefaService {
 	@Autowired
 	private TarefaRepository repo;
 	@Autowired
-	private ProjetoService proServ;
+	private ProjetoService serv;
 
 	public Tarefa criar(@Valid TarefaDTO dto, Long projetoId) {
-		var _taref = new Tarefa(avaliaTarefa(dto), proServ.detalharPorId(projetoId));
+		var _taref = new Tarefa(avaliaTarefa(dto, projetoId), serv.detalharPorId(projetoId));
 		repo.save(_taref);
 		
-		proServ.assimilarTarefa(_taref, projetoId);
+		serv.assimilarTarefa(_taref, projetoId);
 		
 		return _taref;
 	}
@@ -37,7 +37,7 @@ public class TarefaService {
 
 	public Tarefa alterarPorId(Long id, @Valid TarefaDTO dto, Long projetoId) {
 		var _taref = detalharPorId(id);
-		var _proj = proServ.detalharPorId(projetoId);
+		var _proj = serv.detalharPorId(projetoId);
 		
 		_taref.alterar(dto, _proj);
 
@@ -50,9 +50,9 @@ public class TarefaService {
 		return "Tarefa apagada com sucesso!";
 	}
 
-	private TarefaDTO avaliaTarefa(TarefaDTO dto) {
+	private TarefaDTO avaliaTarefa(TarefaDTO dto, Long projetoId) {
 		for (Tarefa lista : listarTarefas()) {
-			if (lista.getNome().equals(dto.nome()) && lista.getPrazo().equals(dto.prazo())) {
+			if (lista.getNome().equals(dto.nome()) && lista.getPrazo().equals(dto.prazo()) && lista.getProjeto().getId() == projetoId) {
 				throw new RuntimeException("Não é possível ter mais de uma tarefa com mesmo nome e prazo");
 			}
 		}
@@ -69,6 +69,10 @@ public class TarefaService {
 		_taref.completarTarefa();
 		
 		return "Tarefa concluída com sucesso.";
+	}
+
+	public void apagarPorProjetoId(Long id) {
+		repo.removeAllByProjetoId(id);
 	}
 
 }

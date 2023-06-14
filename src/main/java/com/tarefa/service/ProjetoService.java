@@ -40,7 +40,9 @@ public class ProjetoService {
 	}
 
 	public String apagarPorId(Long id) {
-		//concertar, talvez use Query
+		repo.removeIdFromTarefaProjetoCorrelation(id);
+		
+		repo.removeAllByProjetoId(id);
 		
 		repo.deleteById(id);
 
