@@ -23,6 +23,9 @@
 <p>Editar os dados de um projeto pelo seu ID: </p>
 <img src= "Images/PutProjeto.png">
 
+<p>Apagar projeto através de seu ID: </p>
+<img src= "Images/DeleteProjeto.png">
+
 <h3>Requisições e Respostas para Tarefa</h3>
 <div>
 	<p>Cadastro de uma tarefa a partir do id de um projeto: </p>
@@ -41,6 +44,6 @@
 <p>Marcar uma tarefa concluída com seu ID: </p>
 <img src= "Images/PutConcluirTarefa.png">
 
-<p>Apagar tarefa através seu ID: </p>
+<p>Apagar tarefa através de seu ID: </p>
 <img src= "Images/DeleteTarefa.png">
 
