@@ -1,6 +1,8 @@
 package com.tarefa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import com.tarefa.model.Usuario;
@@ -19,5 +21,13 @@ public class UserService {
 		repo.save(_user);
 		
 		return _user;
+	}
+
+	public Page<Usuario> listarUsuarios() {
+		return new PageImpl<>(repo.findAll());
+	}
+
+	public Usuario detalharPorId(Long id) {
+		return repo.findById(id).orElseThrow(() -> new RuntimeException("Id inválido"));
 	}
 }
