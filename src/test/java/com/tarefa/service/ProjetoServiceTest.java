@@ -29,8 +29,8 @@ public class ProjetoServiceTest {
 	@Autowired
 	private ProjetoService serv;
 	
-	private ProjetoDTO dto = new ProjetoDTO("Projeto 1", "Descrição 1", LocalDate.now().plusMonths(1), List.of());
-	private ProjetoDTO dto2 = new ProjetoDTO("Projeto 1.1", "Descrição 1", LocalDate.now().plusMonths(1), List.of());
+	private ProjetoDTO dto = new ProjetoDTO("Projeto 1", "Descrição 1", LocalDate.now().plusMonths(1), List.of(), null);
+	private ProjetoDTO dto2 = new ProjetoDTO("Projeto 1.1", "Descrição 1", LocalDate.now().plusMonths(1), List.of(), null);
 	
 	@Test
 	@DisplayName("Retorna a instancia criada do tipo Projeto")

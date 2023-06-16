@@ -17,9 +17,9 @@ public class UserService {
 	private UserRepository repo;
 
 	public Usuario cadastrar(@Valid UserDTO dto) {
-		var _user = new Usuario(dto);
+		var _user = new Usuario(avaliaUsuario(dto));
 		repo.save(_user);
-		
+
 		return _user;
 	}
 
@@ -34,13 +34,22 @@ public class UserService {
 	public Usuario alterarPorId(Long id, @Valid UserDTO dto) {
 		var _user = detalharPorId(id);
 		_user.alterar(dto);
-		
+
 		return _user;
 	}
 
 	public String apagarPorId(Long id) {
 		repo.deleteById(id);
-		
+
 		return "Usuario apagado com sucesso";
+	}
+
+	private UserDTO avaliaUsuario(UserDTO dto) {
+		for (Usuario list : listarUsuarios()) {
+			if (list.getUserName().equalsIgnoreCase(dto.userName())) {
+				throw new RuntimeException("Já existe um usuario com mesmo nome.");
+			}
+		}
+		return dto;
 	}
 }

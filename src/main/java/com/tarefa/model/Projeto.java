@@ -31,8 +31,10 @@ public class Projeto {
 	private LocalDate dataCriacao;
 	private LocalDate prazo;
 	@OneToMany(cascade = CascadeType.ALL)
-	List<Tarefa> tarefa;
-	
+	private List<Tarefa> tarefa;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Usuario> user;
+
 	public Projeto(@Valid ProjetoDTO dto) {
 		this.nome = dto.nome();
 		this.descricao = dto.descricao();
@@ -40,12 +42,20 @@ public class Projeto {
 		this.prazo = dto.prazo();
 		this.tarefa = dto.tarefa();
 	}
-	
-	public List<String> getNomesTarefas(){
-		if(tarefa != null) {
+
+	public List<String> getNomesTarefas() {
+		if (tarefa != null) {
 			return tarefa.stream().map(x -> x.getNome()).toList();
 		}
-		
+
+		return null;
+	}
+
+	public List<String> getNomesUsuarios() {
+		if (user != null) {
+			return user.stream().map(x -> x.getUserName()).toList();
+		}
+
 		return null;
 	}
 
@@ -55,9 +65,14 @@ public class Projeto {
 		this.dataCriacao = LocalDate.now();
 		this.prazo = dto.prazo();
 		this.tarefa = dto.tarefa();
+		this.user = dto.user();
 	}
 
 	public void adicionarTarefa(Tarefa tarefa) {
 		this.tarefa.add(tarefa);
+	}
+
+	public void adicionarUsuario(Usuario user) {
+		this.user.add(user);
 	}
 }

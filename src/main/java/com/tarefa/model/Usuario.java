@@ -6,6 +6,7 @@ import com.tarefa.service.util.Avaliador;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,8 @@ public class Usuario {
 	private String userName;
 	private String senha;
 	private TipoConta tipo;
+	@OneToOne
+	private Projeto projeto;
 
 	public Usuario(@Valid UserDTO dto) {
 		this.userName = dto.userName();
@@ -34,5 +37,6 @@ public class Usuario {
 	public void alterar(@Valid UserDTO dto) {
 		this.userName = dto.userName();
 		this.senha = dto.senha();
+		this.projeto = dto.projeto();
 	}
 }

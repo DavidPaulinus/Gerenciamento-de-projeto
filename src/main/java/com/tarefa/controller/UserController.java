@@ -34,33 +34,35 @@ public class UserController {
 		return ResponseEntity.created(uri.path("/user/cadastrar").buildAndExpand(_user.getId()).toUri())
 				.body(new DetalharUsuario(_user));
 	}
+
 	@GetMapping("/listar")
-	public ResponseEntity<Page<DetalharUsuario>> listarUsuario(){
+	public ResponseEntity<Page<DetalharUsuario>> listarUsuario() {
 		var _user = serv.listarUsuarios();
-		
+
 		return ResponseEntity.ok(_user.map(DetalharUsuario::new));
 	}
+
 	@GetMapping("/detalhar/{id}")
-	public ResponseEntity<DetalharUsuario> detalharUsuarioPorId(@PathVariable Long id){
+	public ResponseEntity<DetalharUsuario> detalharUsuarioPorId(@PathVariable Long id) {
 		var _user = serv.detalharPorId(id);
-		
+
 		return ResponseEntity.ok(new DetalharUsuario(_user));
 	}
-	
+
 	@PutMapping("/alterar/{id}")
 	@Transactional
-	public ResponseEntity<DetalharUsuario> alterarUsuarioPorId(@RequestBody @Valid UserDTO dto, @PathVariable Long id){
+	public ResponseEntity<DetalharUsuario> alterarUsuarioPorId(@RequestBody @Valid UserDTO dto, @PathVariable Long id) {
 		var _user = serv.alterarPorId(id, dto);
-		
+
 		return ResponseEntity.ok(new DetalharUsuario(_user));
-		
+
 	}
-	
+
 	@DeleteMapping("/apagar/{id}")
 	@Transactional
-	public ResponseEntity<String> apagarUsuarioPorId(@PathVariable Long id){
+	public ResponseEntity<String> apagarUsuarioPorId(@PathVariable Long id) {
 		var _user = serv.apagarPorId(id);
-		
+
 		return ResponseEntity.ok(_user);
 	}
 

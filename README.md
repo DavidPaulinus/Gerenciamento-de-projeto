@@ -47,3 +47,21 @@
 <p>Apagar tarefa através de seu ID: </p>
 <img src= "Images/DeleteTarefa.png">
 
+<h3>Requisições e Respostas para Usuário</h3>
+<div>
+	<p>Cadastro de um usuário: </p>
+	<img src= "Images/PostUser.png">
+
+</div>
+<p>Detalhar os dados de um usuário através de seu ID: </p>
+	<img src= "Images/GetDetalharUser.png">
+
+<p>Listar todos os usuário e mostrar seus dados: </p>
+<img src= "Images/GetListarUser.png">
+
+<p>Editar os dados de um usuário pelo seu ID: </p>
+<img src= "Images/PutUser.png">	
+
+<p>Apagar usuário através de seu ID: </p>
+<img src= "Images/DeleteUser.png">
+

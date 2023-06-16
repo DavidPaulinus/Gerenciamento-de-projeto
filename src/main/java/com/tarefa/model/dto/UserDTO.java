@@ -1,5 +1,6 @@
 package com.tarefa.model.dto;
 
+import com.tarefa.model.Projeto;
 import com.tarefa.model.TipoConta;
 
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +10,8 @@ public record UserDTO(
 		String userName,
 		@NotBlank
 		String senha,
-		TipoConta tipo
+		TipoConta tipo,
+		Projeto projeto
 		) {
 
 }

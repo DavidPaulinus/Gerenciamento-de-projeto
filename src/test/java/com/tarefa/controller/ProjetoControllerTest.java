@@ -27,8 +27,8 @@ public class ProjetoControllerTest {
 	@Autowired
 	private JacksonTester<ProjetoDTO> jack;
 
-	private ProjetoDTO dto = new ProjetoDTO("Projeto 1", "Descrição 1", LocalDate.now().plusMonths(1), List.of());
-	private ProjetoDTO dto2 = new ProjetoDTO("Projeto 1.1", "Descrição 1", LocalDate.now().plusMonths(1), List.of());
+	private ProjetoDTO dto = new ProjetoDTO("Projeto 1", "Descrição 1", LocalDate.now().plusMonths(1), List.of(), null);
+	private ProjetoDTO dto2 = new ProjetoDTO("Projeto 1.1", "Descrição 1", LocalDate.now().plusMonths(1), List.of(), null);
 	
 	@Test
 	void retorna201AoCriarUmNovoProjeto() throws Exception {
