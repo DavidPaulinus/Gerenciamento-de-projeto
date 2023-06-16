@@ -30,4 +30,17 @@ public class UserService {
 	public Usuario detalharPorId(Long id) {
 		return repo.findById(id).orElseThrow(() -> new RuntimeException("Id inválido"));
 	}
+
+	public Usuario alterarPorId(Long id, @Valid UserDTO dto) {
+		var _user = detalharPorId(id);
+		_user.alterar(dto);
+		
+		return _user;
+	}
+
+	public String apagarPorId(Long id) {
+		repo.deleteById(id);
+		
+		return "Usuario apagado com sucesso";
+	}
 }

@@ -30,4 +30,9 @@ public class Usuario {
 		this.senha = dto.senha();
 		this.tipo = Avaliador.validarTipoConta(dto);
 	}
+
+	public void alterar(@Valid UserDTO dto) {
+		this.userName = dto.userName();
+		this.senha = dto.senha();
+	}
 }
